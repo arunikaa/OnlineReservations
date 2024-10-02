@@ -1,0 +1,22 @@
+{
+  "trip details": [
+    {
+      "Origin" : "Colombo",
+      "Destination" : "London",
+      "DepartureDate" : "15/10/2024",
+      "ArrivalDate" : "25/10/2024",
+      "CabinClass" : "Business Class",
+      "TripType" : "return"
+    },
+
+
+    {
+      "Origin" : "Colombo",
+      "Destination" : "Dubai",
+      "DepartureDate" : "15/10/2024",
+      "ArrivalDate" : "25/10/2024",
+      "CabinClass" : "Business Class",
+      "TripType" : "return"
+    }
+  ]
+}
