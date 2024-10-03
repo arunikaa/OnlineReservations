@@ -26,7 +26,7 @@ public class SearchFlightsTest extends BaseTest {
             util.scrollUi();
             sf.clickPassengersBox();
             int adultCount = sf.setAdultPaxCount(7);
-           // Assert.assertEquals(adultCount, 7);
+            Assert.assertEquals(adultCount, 7);
             sf.clickCabinClass();
             String cabin = sf.setCabinClass(tripInfo[4]);
            // Assert.assertEquals(cabin,"Business Class");
