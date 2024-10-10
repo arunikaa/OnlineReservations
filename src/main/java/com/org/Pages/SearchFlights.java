@@ -1,5 +1,7 @@
 package com.org.Pages;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.org.Base.BaseTest;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -15,6 +17,7 @@ public class SearchFlights extends BaseTest {
 
     WebDriver driver;
     Logger log;
+
     String fullDepartureDate;
     String fullArrivalDate;
     private final By txtBox_departurePoint = By.xpath("(//input[@class='js-field-input field__input js-dropdown-open field__input--active'])[1]");
@@ -26,6 +29,7 @@ public class SearchFlights extends BaseTest {
     public SearchFlights(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
+
 
     }
 
