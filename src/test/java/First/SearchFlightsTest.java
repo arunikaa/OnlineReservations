@@ -2,6 +2,7 @@ package First;
 
 import com.org.Base.BaseTest;
 import com.org.Pages.SearchFlights;
+import com.org.Utility.RetryAnalyzer;
 import com.org.Utility.Utilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 public class SearchFlightsTest extends BaseTest {
 
 
-    @Test(dataProviderClass = Utilities.class,dataProvider = "dataProvider2")
+    @Test(dataProviderClass = Utilities.class,dataProvider = "dataProvider2",retryAnalyzer = RetryAnalyzer.class)
     public void setDepartureAirport(String data) throws InterruptedException {
         SearchFlights sf = new SearchFlights(driver,log);
         Utilities util = new Utilities(driver,log);
