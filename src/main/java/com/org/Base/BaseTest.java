@@ -12,6 +12,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -36,7 +37,11 @@ public class BaseTest {
     public void setUp() {
 
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
+        driver = new ChromeDriver(options);
+       // driver = new ChromeDriver();
         driver.get("https://www.emirates.com/lk/english/");
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
