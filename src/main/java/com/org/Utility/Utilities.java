@@ -35,7 +35,7 @@ Scroll the UI when required
 
         log.info("Start scrollUi ");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,250)", "");
+        js.executeScript("window.scrollBy(0,300)", "");
         System.out.println("i am here");
     }
 
