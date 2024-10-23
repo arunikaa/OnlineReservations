@@ -38,8 +38,9 @@ public class BaseTest {
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        options.addArguments("--headless=old");
         options.addArguments("--window-size=1920,1080");
+        //options.add_arguments("--headless=old");
         driver = new ChromeDriver(options);
        // driver = new ChromeDriver();
         driver.get("https://www.emirates.com/lk/english/");
