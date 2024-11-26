@@ -64,7 +64,7 @@ Scroll the UI when required
 
         // JSONObject to read each JSONArray object
         JSONObject formInfoData;
-        String origin,destination,departureDate,arrivalDate,cabinClass,tripType;
+        String origin,destination,departureDate,arrivalDate,cabinClass,tripType,adultPax;
         // Get data from JSONArray and store it in String array
         for (int i = 0; i < tripDetails.size(); i++) {
             formInfoData = (JSONObject) tripDetails.get(i);
@@ -74,8 +74,10 @@ Scroll the UI when required
             arrivalDate = (String) formInfoData.get("ArrivalDate");
             cabinClass = (String) formInfoData.get("CabinClass");
             tripType = (String) formInfoData.get("TripType");
+            adultPax = (String) formInfoData.get("AdultPax");
 
-            dataArray[i] = origin + "," + destination + "," + departureDate + "," + arrivalDate + "," + cabinClass + "," + tripType;
+
+            dataArray[i] = origin + "," + destination + "," + departureDate + "," + arrivalDate + "," + cabinClass + "," + tripType+ ","+adultPax;
         }
         return  dataArray;
 
