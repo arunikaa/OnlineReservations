@@ -1,7 +1,5 @@
 package com.org.Pages;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.org.Base.BaseTest;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -9,9 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
 
 public class SearchFlights extends BaseTest {
 
@@ -19,7 +15,6 @@ public class SearchFlights extends BaseTest {
     Logger log;
 
     String fullDepartureDate;
-    String fullArrivalDate;
     private final By txtBox_departurePoint = By.xpath("(//input[@class='js-field-input field__input js-dropdown-open field__input--active'])[1]");
     private final By txtBox_arrivalPoint = By.xpath("//input[@class='js-field-input field__input js-dropdown-open field__input--active'][@name='Arrival airport']");
     private final By btn_continue = By.xpath("//button[contains(@class,'cta cta--large cta--primary js-continue-search-flight search-flight__continue--cta')]");
@@ -90,40 +85,22 @@ public class SearchFlights extends BaseTest {
     }
 
     @Test
-    public String enterDepartureDate(String depDate) throws InterruptedException {
-
-        log.info("Start enterDepartureDate");
-        String[] dateParts = depDate.split("/");
-
-        int day = Integer.parseInt(dateParts[0]);
-        int month = Integer.parseInt(dateParts[1]);
-        int year = Integer.parseInt(dateParts[2]);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(day).append(month).append(year);
-
-        fullDepartureDate = sb.toString();
-        By btn_departureDate = By.xpath("//button[@data-string='" + fullDepartureDate + "']");
-        WebElement dep = driver.findElement(btn_departureDate);
-        Thread.sleep(100);
-        dep.click();
-        System.out.println(fullDepartureDate);
-
-        return depDate;
-
-
-    }
-
-    @Test
     public void enterArrivalDate(String arrDate) {
 
         log.info("Start enterArrivalDate ");
 
-        String fullArrDate = arrDate.replaceAll("/", "");
+        String[] dateParts = arrDate.split("/");
+
+        int day = Integer.parseInt(dateParts[0]);
+        int month = (Integer.parseInt(dateParts[1])) - 1;
+        int year = Integer.parseInt(dateParts[2]);
+
+        String fullArrDate = String.valueOf(day) + month + year;
         System.out.println(fullArrDate);
         By fullArrivalDate = By.xpath("//button[@data-string='" + fullArrDate + "']");
         try {
             WebElement arrivalDate = driver.findElement(fullArrivalDate);
+            arrivalDate.clear();
             arrivalDate.click();
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -140,9 +117,11 @@ public class SearchFlights extends BaseTest {
     }
 
     @Test
-    public int setAdultPaxCount(int noOfAdults) {
+    public int setAdultPaxCount(String adultPaxCount) {
 
         log.info("Start setAdultPaxCount");
+
+        int noOfAdults = Integer.parseInt(adultPaxCount);
 
         WebElement initialAdults = null;
         try {
@@ -168,24 +147,20 @@ public class SearchFlights extends BaseTest {
     }
 
     @Test
-    public void clickCabinClass()
-    {
+    public void clickCabinClass() {
         log.info("Start clickCabinClass ");
 
         try {
             cabinType = driver.findElement(By.xpath("//input[@id='field-search-flight-class']"));
             cabinType.click();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
 
     @Test
-    public String setCabinClass(String cabinClass)
-    {
-        WebElement cabin = driver.findElement(By.xpath("//p[normalize-space()='"+ cabinClass +"']"));
+    public String setCabinClass(String cabinClass) {
+        WebElement cabin = driver.findElement(By.xpath("//p[normalize-space()='" + cabinClass + "']"));
         cabin.click();
         System.out.println(cabinType.getText());
 
@@ -193,9 +168,36 @@ public class SearchFlights extends BaseTest {
     }
 
     @Test
-    public void clickSearchButton()
-    {
+    public void clickSearchButton() {
         WebElement search = driver.findElement(By.xpath("//form[@method='post']//button[@type='submit']"));
         search.click();
     }
+
+    @Test
+    public String getCurrentMoth() {
+
+        WebElement cMonth = driver.findElement(By.xpath("//eol-calendar[@title='Please choose your departure date']//div[@class='ek-datepicker__column-label label-month' and normalize-space()='November']"));
+        return cMonth.getText();
+    }
+
+
+    public void setDepartureDate(String depDate) throws InterruptedException {
+
+        log.info("Start setDepartureDate");
+        String[] dateParts = depDate.split("/");
+
+        int day = Integer.parseInt(dateParts[0]);
+        String month = dateParts[1];
+        int year = Integer.parseInt(dateParts[2]);
+
+        fullDepartureDate = String.valueOf(month) + " " + year;
+        By btn_departureDate = By.xpath("(//button[contains(@aria-label,'" + fullDepartureDate + "')][normalize-space()='" + day + "'])[1]");
+        WebElement dep = driver.findElement(btn_departureDate);
+        Thread.sleep(100);
+        dep.click();
+
+
+    }
+
+
 }
