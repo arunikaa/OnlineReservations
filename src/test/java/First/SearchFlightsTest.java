@@ -1,7 +1,7 @@
 package First;
 
 import com.org.Base.BaseTest;
-import com.org.Pages.FlightAvailabilityPage;
+
 import com.org.Pages.SearchFlights;
 import com.org.Utility.RetryAnalyzer;
 import com.org.Utility.Utilities;
@@ -13,7 +13,7 @@ public class SearchFlightsTest extends BaseTest {
     @Test(dataProviderClass = Utilities.class, dataProvider = "dataProvider2", retryAnalyzer = RetryAnalyzer.class)
     public void setDepartureAirport(String data) throws InterruptedException {
         SearchFlights sf = new SearchFlights(driver, log);
-        FlightAvailabilityPage fa = new FlightAvailabilityPage(driver, log);
+
         Utilities util = new Utilities(driver, log);
         util.scrollUi();
         String[] tripInfo = data.split(",");
