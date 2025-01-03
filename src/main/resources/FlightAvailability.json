@@ -3,11 +3,11 @@
     {
       "Origin" : "Colombo",
       "Destination" : "Dubai",
-      "DepartureDate" : "1/December/2024",
-      "ArrivalDate" : "25/December/2024",
+      "DepartureDate" : "11/January/2025",
+      "ArrivalDate" : "15/January/2025",
       "CabinClass" : "Business Class",
       "TripType" : "return",
-      "AdultPax": "7"
+      "AdultPax": "5"
 
     }
   ]
