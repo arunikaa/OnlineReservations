@@ -1,7 +1,6 @@
 package com.org.Utility;
 
 import com.org.Base.BaseTest;
-import com.org.Pages.Pojo.FlightDetails;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -36,7 +35,7 @@ Scroll the UI when required
         log.info("Start scrollUi ");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,300)", "");
-        System.out.println("i am here");
+
     }
 
     @DataProvider
@@ -48,7 +47,8 @@ Scroll the UI when required
         Object obj = null;
         try {
             obj = parser.parse(new FileReader("src/main/resources/FlightAvailability.json"));
-        } catch (IOException | ParseException e) {
+        }
+        catch (IOException | ParseException e) {
             e.getMessage();
         }
         jsonObject = (JSONObject) obj;
