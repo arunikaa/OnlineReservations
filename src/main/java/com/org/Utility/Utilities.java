@@ -49,7 +49,8 @@ Scroll the UI when required
             obj = parser.parse(new FileReader("src/main/resources/FlightAvailability.json"));
         }
         catch (IOException | ParseException e) {
-            e.getMessage();
+            String message = e.getMessage();
+            System.out.println(message);
         }
         jsonObject = (JSONObject) obj;
 
