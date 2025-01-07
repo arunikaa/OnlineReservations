@@ -7,10 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
@@ -31,19 +28,21 @@ public class BaseTest {
     protected static ExtentTest test;
 
     private final By acceptCookies = By.xpath("//button[@id='onetrust-accept-btn-handler']");
-
+    ChromeOptions options;
 
     @BeforeSuite
+
     public void setUp() {
 
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=old");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless=old");
+        options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");
-        //options.add_arguments("--headless=old");
+
         driver = new ChromeDriver(options);
-       // driver = new ChromeDriver();
         driver.get("https://www.emirates.com/lk/english/");
+//        driver.get(url);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -59,7 +58,7 @@ public class BaseTest {
 
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
-        extent.setSystemInfo("Tester", "Your Name");
+        extent.setSystemInfo("Tester", "Arunika");
     }
 
 
@@ -79,8 +78,8 @@ public class BaseTest {
                 String screenshotPath = getScreenshot(driver, result.getName());
                 test.addScreenCaptureFromPath(screenshotPath);
             } catch (IOException e) {
-                e.printStackTrace();
-                log.info(e.getMessage());
+                String message = e.getMessage();
+                log.info(message);
             }
         } else if (result.getStatus() == ITestResult.SUCCESS) {
             test.pass("Test Passed");
@@ -101,8 +100,12 @@ public class BaseTest {
 
    @AfterSuite
     public void tearDown() {
-      driver.quit();
-        log.info("Driver quit");
+       // Clear cache using JavaScript Executor
+       JavascriptExecutor js = (JavascriptExecutor) driver;
+       js.executeScript("window.localStorage.clear();");
+       js.executeScript("window.sessionStorage.clear();");
+       driver.quit();
+       log.info("Driver quit");
        extent.flush();
   }
 }
