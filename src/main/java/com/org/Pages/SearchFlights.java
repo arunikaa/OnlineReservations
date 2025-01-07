@@ -117,16 +117,21 @@ public class SearchFlights extends BaseTest {
     }
 
     @Test
-    public int setAdultPaxCount(String adultPaxCount) {
+    public void setAdultPaxCount(String adultPaxCount) {
 
         log.info("Start setAdultPaxCount");
 
         int noOfAdults = Integer.parseInt(adultPaxCount);
 
-        WebElement initialAdults = null;
+        //WebElement initialAdults = null;
         try {
             WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field increment-field--subtract-disabled']//span[@class='icon icon-plus']"));
-            initialAdults = driver.findElement(By.xpath("//span[@class='increment-field__value js-increment-value'][normalize-space()='1']"));
+        //  WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field']//button[1]"));
+
+
+            WebElement initialAdults = driver.findElement(By.xpath("//span[@class='increment-field__value js-increment-value'][normalize-space()='1']"));
+            WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait1.until(ExpectedConditions.visibilityOfAllElements(initialAdults));
             int adultCount = Integer.parseInt(initialAdults.getText());
 
 
@@ -142,8 +147,8 @@ public class SearchFlights extends BaseTest {
             log.error(e.getMessage());
         }
 
-        assert initialAdults != null;
-        return Integer.parseInt(initialAdults.getText());
+
+       
     }
 
     @Test

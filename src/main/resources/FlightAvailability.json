@@ -3,11 +3,21 @@
     {
       "Origin" : "Colombo",
       "Destination" : "Dubai",
-      "DepartureDate" : "1/December/2024",
-      "ArrivalDate" : "25/December/2024",
+      "DepartureDate" : "15/January/2025",
+      "ArrivalDate" : "18/January/2025",
       "CabinClass" : "Business Class",
       "TripType" : "return",
-      "AdultPax": "7"
+      "AdultPax": "5"
+
+    },
+    {
+      "Origin" : "Dubai",
+      "Destination" : "Colombo",
+      "DepartureDate" : "19/January/2025",
+      "ArrivalDate" : "21/January/2025",
+      "CabinClass" : "Business Class",
+      "TripType" : "return",
+      "AdultPax": "2"
 
     }
   ]

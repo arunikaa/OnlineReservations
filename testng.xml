@@ -9,10 +9,9 @@
 
 
                <classes>
-
+                   <class name="com.org.Base.BaseTest"/>
                    <class name="First.LandingPageTest"/>
                    <class name="First.SearchFlightsTest"/>
-
                </classes>
     </test>
 </suite>
