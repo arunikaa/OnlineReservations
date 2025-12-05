@@ -31,7 +31,6 @@ public class BaseTest {
     ChromeOptions options;
 
     @BeforeSuite
-
     public void setUp() {
 
         WebDriverManager.chromedriver().setup();
@@ -42,7 +41,6 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.get("https://www.emirates.com/lk/english/");
-//        driver.get(url);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -61,14 +59,12 @@ public class BaseTest {
         extent.setSystemInfo("Tester", "Arunika");
     }
 
-
     @BeforeClass
     public void logClassName() {
         String className = getClass().getSimpleName();
         log.info("Start Class", className);
         test = extent.createTest(className);
     }
-
 
     @AfterMethod
     public void getResult(ITestResult result) {

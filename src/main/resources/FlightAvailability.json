@@ -1,26 +1,24 @@
 {
   "trip details": [
     {
-      "Origin" : "Colombo",
-      "Destination" : "Dubai",
+      "Origin" : "CMB",
+      "Destination" : "DXB",
 
-      "DepartureDate" : "15/January/2025",
-      "ArrivalDate" : "18/January/2025",
+      "DepartureDate" : "25/December/2025",
+      "ArrivalDate" : "30/December/2025",
       "CabinClass" : "Business Class",
       "TripType" : "return",
       "AdultPax": "5"
 
     },
     {
-      "Origin" : "Dubai",
-      "Destination" : "Colombo",
-      "DepartureDate" : "19/January/2025",
-      "ArrivalDate" : "21/January/2025",
+      "Origin" : "DXB",
+      "Destination" : "CMB",
+      "DepartureDate" : "05/December/2025",
+      "ArrivalDate" : "10/December/2025",
       "CabinClass" : "Business Class",
       "TripType" : "return",
       "AdultPax": "2"
-
-
     }
   ]
 }

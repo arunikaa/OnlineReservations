@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class SearchFlights extends BaseTest {
+public class SearchFlightsPage extends BaseTest {
 
     WebDriver driver;
     Logger log;
@@ -21,10 +21,9 @@ public class SearchFlights extends BaseTest {
     private final By txtBox_departureField = By.xpath("//input[@id='search-flight-date-picker--depart']");
     WebElement cabinType;
 
-    public SearchFlights(WebDriver driver, Logger log) {
+    public SearchFlightsPage(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
-
 
     }
 
@@ -41,8 +40,6 @@ public class SearchFlights extends BaseTest {
         dpt.click();
         dpt.sendKeys(Keys.ENTER);
         return departureCity;
-
-
     }
 
 
@@ -69,8 +66,6 @@ public class SearchFlights extends BaseTest {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-
-
     }
 
     @Test
@@ -107,7 +102,6 @@ public class SearchFlights extends BaseTest {
 
         }
 
-
     }
 
     @Test
@@ -126,13 +120,13 @@ public class SearchFlights extends BaseTest {
         //WebElement initialAdults = null;
         try {
             WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field increment-field--subtract-disabled']//span[@class='icon icon-plus']"));
-        //  WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field']//button[1]"));
+       //  WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field']//button[1]"));
 
 
             WebElement initialAdults = driver.findElement(By.xpath("//span[@class='increment-field__value js-increment-value'][normalize-space()='1']"));
             WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait1.until(ExpectedConditions.visibilityOfAllElements(initialAdults));
-            int adultCount = Integer.parseInt(initialAdults.getText());
+           // int adultCount = Integer.parseInt(initialAdults.getText());
 
 
             if (noOfAdults > 1) {
@@ -147,8 +141,6 @@ public class SearchFlights extends BaseTest {
             log.error(e.getMessage());
         }
 
-
-       
     }
 
     @Test
@@ -195,7 +187,7 @@ public class SearchFlights extends BaseTest {
         String month = dateParts[1];
         int year = Integer.parseInt(dateParts[2]);
 
-        fullDepartureDate = String.valueOf(month) + " " + year;
+        fullDepartureDate = (month) + " " + year;
         By btn_departureDate = By.xpath("(//button[contains(@aria-label,'" + fullDepartureDate + "')][normalize-space()='" + day + "'])[1]");
         WebElement dep = driver.findElement(btn_departureDate);
         Thread.sleep(100);
