@@ -1,18 +1,11 @@
 package com.org.Utility;
 
 import com.org.Base.BaseTest;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
-
-import java.io.FileReader;
-import java.io.IOException;
-
+import java.util.List;
 
 
 public class Utilities extends BaseTest {
@@ -23,7 +16,6 @@ public class Utilities extends BaseTest {
     public Utilities(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
-
 
     }
 /*
@@ -37,52 +29,21 @@ Scroll the UI when required
         js.executeScript("window.scrollBy(0,300)", "");
 
     }
+    /**
+     * DataProvider for flight search tests
+     * Returns TripData objects from JSON file
+     */
+    @DataProvider(name = "tripDataProvider")
+    public static Object[][] tripDataProvider() {
+        String filePath = "src/main/resources/FlightAvailability.json";
+        List<TripData> tripDataList = JasonDataReader.readTripData(filePath);
 
-    @DataProvider
-    public  static Object[] dataProvider2()
-    {
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject;
-        // Read JSON file
-        Object obj = null;
-        try {
-            obj = parser.parse(new FileReader("src/main/resources/FlightAvailability.json"));
+        // Convert List to 2D Object array for TestNG DataProvider
+        Object[][] dataArray = new Object[tripDataList.size()][1];
+        for (int i = 0; i < tripDataList.size(); i++) {
+            dataArray[i][0] = tripDataList.get(i);
         }
-        catch (IOException | ParseException e) {
-            String message = e.getMessage();
-            System.out.println(message);
-        }
-        jsonObject = (JSONObject) obj;
 
-        // Extract array data from JSONObject
-        assert jsonObject != null;
-        JSONArray tripDetails = (JSONArray) jsonObject.get("trip details");
-
-        // String array to store JSONArray data
-        String[] dataArray = new String[tripDetails.size()];
-
-
-
-        // JSONObject to read each JSONArray object
-        JSONObject formInfoData;
-        String origin,destination,departureDate,arrivalDate,cabinClass,tripType,adultPax;
-        // Get data from JSONArray and store it in String array
-        for (int i = 0; i < tripDetails.size(); i++) {
-            formInfoData = (JSONObject) tripDetails.get(i);
-            origin = (String) formInfoData.get("Origin");
-            destination = (String) formInfoData.get("Destination");
-            departureDate = (String) formInfoData.get("DepartureDate");
-            arrivalDate = (String) formInfoData.get("ArrivalDate");
-            cabinClass = (String) formInfoData.get("CabinClass");
-            tripType = (String) formInfoData.get("TripType");
-            adultPax = (String) formInfoData.get("AdultPax");
-
-
-            dataArray[i] = origin + "," + destination + "," + departureDate + "," + arrivalDate + "," + cabinClass + "," + tripType+ ","+adultPax;
-        }
-        return  dataArray;
-
+        return dataArray;
     }
-
-
 }
