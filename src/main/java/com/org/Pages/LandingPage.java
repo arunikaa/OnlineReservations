@@ -15,18 +15,12 @@ public class LandingPage extends BaseTest {
 
     private final By lbl_SearchFlights = By.xpath("//li[@id='tab0']//div[@class='widget__tab__content']");
 
-
-
-
     public LandingPage(WebDriver driver,Logger log ) {
         this.driver = driver;
         this.log = log;
 
          // Inheriting the driver from BaseTest
     }
-
-
-
 
     public void clickSearchFlights()
     {
