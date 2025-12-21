@@ -26,26 +26,31 @@ public class BaseTest {
     protected static Logger log;
     protected static ExtentReports extent;
     protected static ExtentTest test;
+    protected static String baseUrl;
 
     private final By acceptCookies = By.xpath("//button[@id='onetrust-accept-btn-handler']");
     ChromeOptions options;
 
     @BeforeSuite
-    public void setUp() {
+    @Parameters({"browser", "url"})
+    public void setUp(@Optional("chrome") String browser,
+                      @Optional("https://www.emirates.com/lk/english/") String url){
+        log = LogManager.getLogger();
+        log.info("Starting test suite setup");
 
         WebDriverManager.chromedriver().setup();
+        baseUrl = url;
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless=old");
         options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");
 
         driver = new ChromeDriver(options);
-        driver.get("https://www.emirates.com/lk/english/");
+        driver.get(url);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(acceptCookies).click();
-        log = LogManager.getLogger(BaseTest.class);
         log.info("Driver set up is successful");
 
         // Set up ExtentReports
@@ -88,7 +93,14 @@ public class BaseTest {
         String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String destination = System.getProperty("user.dir") + "/Reports/Screenshots/" + screenshotName + dateName + ".png";
+
+        // Create directory if it doesn't exist
+        File screenshotDir = new File(System.getProperty("user.dir") + "/Reports/Screenshots/");
+        if (!screenshotDir.exists()) {
+            screenshotDir.mkdirs();
+        }
+
+        String destination = screenshotDir.getAbsolutePath() + "/" + screenshotName + dateName + ".png";
         File finalDestination = new File(destination);
         FileHandler.copy(source, finalDestination);
         return destination;

@@ -14,8 +14,8 @@
     {
       "Origin" : "DXB",
       "Destination" : "CMB",
-      "DepartureDate" : "05/December/2025",
-      "ArrivalDate" : "10/December/2025",
+      "DepartureDate" : "25/December/2025",
+      "ArrivalDate" : "30/December/2025",
       "CabinClass" : "Business Class",
       "TripType" : "return",
       "AdultPax": "2"

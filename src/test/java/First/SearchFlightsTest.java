@@ -72,7 +72,7 @@ public class SearchFlightsTest extends BaseTest {
             log.info("Clicking search button");
             searchFlights.clickSearchButton();
             System.out.println(avail.viewOrigin(tripData.getOrigin()));
-            //System.out.println(avail.viewDestination());
+
 
             // Add validation for search results if needed
             // Assert.assertTrue(searchFlights.areResultsDisplayed(), "Search results not displayed");
@@ -85,7 +85,7 @@ public class SearchFlightsTest extends BaseTest {
         } finally {
             // Navigate back to home page for next iteration
             log.info("Navigating back to home page");
-            driver.get("https://www.emirates.com/lk/english/");
+            driver.get(baseUrl);
         }
         }
     }
