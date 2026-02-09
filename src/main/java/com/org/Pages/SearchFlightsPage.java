@@ -43,7 +43,7 @@ public class SearchFlightsPage extends BaseTest {
     }
 
 
-    @Test
+
     public String setArrivalAirport(String arrivalCity) {
 
         log.info("Start setArrivalAirport ");
@@ -58,7 +58,7 @@ public class SearchFlightsPage extends BaseTest {
     }
 
 
-    @Test
+
     public void clickContinueBtn() {
 
         try {
@@ -68,7 +68,7 @@ public class SearchFlightsPage extends BaseTest {
         }
     }
 
-    @Test
+
     public void clickDepartureSelection() {
         log.info("start clickDepartureSelection");
         try {
@@ -79,7 +79,7 @@ public class SearchFlightsPage extends BaseTest {
         }
     }
 
-    @Test
+
     public void enterArrivalDate(String arrDate) {
 
         log.info("Start enterArrivalDate ");
@@ -104,13 +104,13 @@ public class SearchFlightsPage extends BaseTest {
 
     }
 
-    @Test
+
     public void clickPassengersBox() {
         By passengers = By.xpath("//input[@name='Passengers']");
         driver.findElement(passengers).click();
     }
 
-    @Test
+
     public void setAdultPaxCount(String adultPaxCount) {
 
         log.info("Start setAdultPaxCount");
@@ -121,8 +121,6 @@ public class SearchFlightsPage extends BaseTest {
         try {
             WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field increment-field--subtract-disabled']//span[@class='icon icon-plus']"));
        //  WebElement adults = driver.findElement(By.xpath("//div[@class='increment-field js-increment-field']//button[1]"));
-
-
             WebElement initialAdults = driver.findElement(By.xpath("//span[@class='increment-field__value js-increment-value'][normalize-space()='1']"));
             WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait1.until(ExpectedConditions.visibilityOfAllElements(initialAdults));
@@ -143,7 +141,7 @@ public class SearchFlightsPage extends BaseTest {
 
     }
 
-    @Test
+
     public void clickCabinClass() {
         log.info("Start clickCabinClass ");
 
@@ -155,7 +153,7 @@ public class SearchFlightsPage extends BaseTest {
         }
     }
 
-    @Test
+
     public String setCabinClass(String cabinClass) {
         WebElement cabin = driver.findElement(By.xpath("//p[normalize-space()='" + cabinClass + "']"));
         cabin.click();
@@ -164,13 +162,13 @@ public class SearchFlightsPage extends BaseTest {
         return cabinType.getText();
     }
 
-    @Test
+
     public void clickSearchButton() {
         WebElement search = driver.findElement(By.xpath("//form[@method='post']//button[@type='submit']"));
         search.click();
     }
 
-    @Test
+
     public String getCurrentMoth() {
 
         WebElement cMonth = driver.findElement(By.xpath("//eol-calendar[@title='Please choose your departure date']//div[@class='ek-datepicker__column-label label-month' and normalize-space()='November']"));
