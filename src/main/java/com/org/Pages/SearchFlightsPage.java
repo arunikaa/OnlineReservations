@@ -42,7 +42,7 @@ public class SearchFlightsPage extends BaseTest {
         return departureCity;
     }
 
-
+ // Set the arrival airport
 
     public String setArrivalAirport(String arrivalCity) {
 
