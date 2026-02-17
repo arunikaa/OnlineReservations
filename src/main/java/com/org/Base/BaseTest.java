@@ -30,6 +30,7 @@ public class BaseTest {
 
     private final By acceptCookies = By.xpath("//button[@id='onetrust-accept-btn-handler']");
     ChromeOptions options;
+    
 
     @BeforeSuite
     @Parameters({"browser", "url"})
