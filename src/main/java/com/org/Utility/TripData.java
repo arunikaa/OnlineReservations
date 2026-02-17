@@ -20,7 +20,7 @@ public class TripData {
         this.adultPax = adultPax;
     }
 
-    // Getters
+    // Getters for the json file
     public String getOrigin() { return origin; }
     public String getDestination() { return destination; }
     public String getDepartureDate() { return departureDate; }
