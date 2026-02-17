@@ -27,7 +27,7 @@ public class SearchFlightsPage extends BaseTest {
 
     }
 
-    @Test
+
     public String setDepartureAirport(String departureCity) {
 
         log.info("Start setDepartureAirport ");
@@ -42,7 +42,7 @@ public class SearchFlightsPage extends BaseTest {
         return departureCity;
     }
 
-
+ // Set the arrival airport
 
     public String setArrivalAirport(String arrivalCity) {
 
